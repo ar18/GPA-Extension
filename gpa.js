@@ -23,6 +23,18 @@ function getTotalGPAValue(){
 	return currentValue;
 }
 
+function getCurrentCourses(){
+	var GPA_tables = document.getElementsByClassName('DeAcDataGridItemB');
+	var current = [];
+
+	for(let row of GPA_tables){
+		if(row.cells[4].innerHTML.length == 87 && row.cells[3].innerHTML == 'current')
+			current.push(row.cells[1].children[0].innerHTML);
+	}
+	return current;
+	
+}
+
 function getValue(letterGrade){
 	switch(letterGrade){
 		case 'A':
@@ -44,5 +56,5 @@ function getValue(letterGrade){
 
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: getTotalCredit()
+    source: getCurrentCourses()
 });

@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 var a=0;
 function count() {
     a++;
-    document.getElementById('demo').textContent  = request.source;
+    document.getElementById('demo').textContent  = request.source[0];
    // document.getElementById('demo').textContent = a;
 }
 document.getElementById('do-count').onclick = count;
