@@ -7,7 +7,7 @@
   // Recommended
   "default_locale": "en",
   "description": "A plain text description",
-  "icons": {...},
+  "icons": {icon.png},
 
   // Pick one (or none)
   "browser_action": {...},
