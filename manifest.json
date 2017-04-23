@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "RU Failing?",
-  "description": "This extension shows a Google Image search result for the current page",
+  "description": "Figure out your GPA the easy way",
   "version": "1.0",
 
   "browser_action": {
