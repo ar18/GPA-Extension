@@ -18,22 +18,35 @@ function calculate() {
   }
   document.getElementById('creditName').innerHTML = gpaInd;
 }
+
 document.getElementById('do-submit').onclick = calculate;
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
-  if (request.action == "getSource") {
-    document.getElementById('demo').textContent  = request.source;
+  if (request.action == "getCurrentCourses") {
+    var courses  = request.source;
+    var table = document.getElementById('courseTable');
+    for(var course in courses){
+        var col = table.insertRow();
+        var courseNameCell = col.insertCell(0);
+        var courseGradeCell = col.insertCell(1);
+
+        courseNameCell.innerHTML = courses[course];
+       
+        var courseGradeSelect = document.createElement("select");
+        courseGradeSelect.id = course;
+        courseGradeSelect.options.add(new Option("A","4.0"));
+        courseGradeSelect.options.add(new Option("B+","3.5"));
+        courseGradeSelect.options.add(new Option("B","3.0"));
+        courseGradeSelect.options.add(new Option("C+","2.5"));
+        courseGradeSelect.options.add(new Option("C","2.0"));
+        courseGradeSelect.options.add(new Option("D","1.0"));
+        courseGradeSelect.options.add(new Option("F","0.0"));
+        courseGradeCell.appendChild(courseGradeSelect);
+    }
   }
 });
 
 
-var a=0;
-function count() {
-    a++;
-    document.getElementById('demo').textContent  = request.source[0];
-   // document.getElementById('demo').textContent = a;
-}
-document.getElementById('do-count').onclick = count;
 
 function onWindowLoad() {
 

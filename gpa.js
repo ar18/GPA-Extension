@@ -16,8 +16,8 @@ function getTotalGPAValue(){
 	var GPA_tables = document.getElementsByClassName('DeAcDataGridItemB');
 	var currentValue = 0.0;
 	for(let row of GPA_tables){
-		if(row.cells[4].innerHTML.length == 87)
-			currentValue += parseFloat(row.cells[2].innerHTML) * getValue(row.cells[2].innerHTML);
+		if(row.cells[4].innerHTML.length == 87  && row.cells[3].innerHTML != 'current')
+			currentValue += parseFloat(row.cells[2].innerHTML) * getValue(row.cells[3].innerHTML);
 	}
 
 	return currentValue;
@@ -34,6 +34,17 @@ function getCurrentCourses(){
 	return current;
 	
 }
+
+/*	var GPA_tables = document.getElementsByClassName('DeAcDataGridItemB');
+
+	var data = {};
+	for(let row of GPA_tables){
+		if(row.cells[4].innerHTML.length == 87 && row.cells[3].innerHTML == 'current')
+			data[row.cells[1].children[0].innerHTML] = parseFloat(row.cells[2].innerHTML);
+	}
+	return data;
+	
+}*/
 
 function getValue(letterGrade){
 	switch(letterGrade){
@@ -55,6 +66,16 @@ function getValue(letterGrade){
 }
 
 chrome.runtime.sendMessage({
-    action: "getSource",
+    action: "getCurrentCourses",
     source: getCurrentCourses()
+});
+
+chrome.runtime.sendMessage({
+    action: "getTotalCredit",
+    source: getTotalCredit()
+});
+
+chrome.runtime.sendMessage({
+    action: "getTotalGPAValue",
+    source: getTotalGPAValue()
 });
