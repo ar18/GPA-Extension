@@ -25,26 +25,13 @@ function getTotalGPAValue(){
 
 function getCurrentCourses(){
 	var GPA_tables = document.getElementsByClassName('DeAcDataGridItemB');
-	var current = [];
-
-	for(let row of GPA_tables){
-		if(row.cells[4].innerHTML.length == 87 && row.cells[3].innerHTML == 'current')
-			current.push(row.cells[1].children[0].innerHTML);
-	}
-	return current;
-	
-}
-
-/*	var GPA_tables = document.getElementsByClassName('DeAcDataGridItemB');
-
 	var data = {};
 	for(let row of GPA_tables){
 		if(row.cells[4].innerHTML.length == 87 && row.cells[3].innerHTML == 'current')
 			data[row.cells[1].children[0].innerHTML] = parseFloat(row.cells[2].innerHTML);
 	}
-	return data;
-	
-}*/
+	return data;	
+}
 
 function getValue(letterGrade){
 	switch(letterGrade){
